@@ -73,7 +73,6 @@ get_vat2(2000,0.2)
 # 4. 위에 함수로 계산된 것을 값으로 표현하고 싶다면?
 # return을 작성하면 됨 
 
-
 def get_vat2(price,vat_rate=0.1):
   
     return price*vat_rate
@@ -99,7 +98,7 @@ vat_rate = input('vat_rate? : ')
 
 
 def get_vat3(price,vat_rate):
-    return price*float(vat_rate)
+    return 'total cost : ' + str(int(price)*float(vat_rate))
 
 print(get_vat3(price,vat_rate))
 
@@ -108,9 +107,32 @@ print(get_vat3(price,vat_rate))
       int(input())이라고 해야 int형이됨 
 
       만약 입력받은 price(vat_rate)를 int(float)형으로 입력요청할 경우 혹은 
-      함수를 정의할 땨 형변환하지 않으면 실행할 때 오류 발생함!!
+      함수를 정의할 때 형 변환하지 않으면 실행할 때 오류 발생함!!
 
-      ==> 즉, 형변환 필수!!
+      ==> 즉, 형 변환 필수!!
+
+
+    * 또 주의할 점!! 
+      만약, 출력할 때 total cost : 100 이런식으로  'total cost :' 이 문자를 작성해주고 싶다면 
+      return에 'total cost :'를 작성해주고 뒤에 계산한 내용도 str()로 형 변환해줘야 함 
+      -> 왜냐하면 'total cost :' 이거 자체가 문자이기 때문에 뒤에 계산한 값도 str로 형 변환해줘야함 
+
+      ==> 즉, 이 경우도 형 변환 필수!!
+
+
+    ---------------------------------------------------------------------------------------------------------
+
+      * 더 정확한 내용 찾아본 결과!
+
+        Python에서는 '+' 연산자를 사용하여 숫자 값을 다른 문자열과 연결하려면 숫자 값을 문자열로 변환해야 합니다. 
+        코드에서 '총 비용:'' 문자열을 'int(price)*float(vat_rate)' 계산 결과와 연결합니다.
+        str()을 ​​사용하여 결과를 문자열로 변환하지 않으면 문자열을 숫자 값과 직접 연결할 수 없기 때문에
+        Python은 TypeError를 발생시킵니다.
+
+      def get_vat3(price, vat_rate):
+            total_cost = int(price) * float(vat_rate)
+            return 'total cost : ' + str(total_cost)
+      ==> 대충 이런 식으로 작성해야 한다고 함       
 
 
 """
